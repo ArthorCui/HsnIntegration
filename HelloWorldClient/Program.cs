@@ -10,8 +10,9 @@ namespace HelloWorldClient
     {
         static void Main(string[] args)
         {
-            HelloWorldService client = new HelloWorldService();
+            HelloWorldServiceClient client = new HelloWorldServiceClient();
             Console.WriteLine(client.Greet(new Person { Name = "Roger" }));
+            client.Close();
             Console.ReadLine();
         }
     }
