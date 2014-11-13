@@ -11,9 +11,8 @@ namespace HelloWorldClient
         static void Main(string[] args)
         {
             HelloWorldService client = new HelloWorldService();
-            Console.ReadLine();
             Console.WriteLine(client.Greet(new Person { Name = "Roger" }));
-            Console.WriteLine(client.GetData(1));
+            Console.ReadLine();
         }
     }
 }
