@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A4DEDE52-A2F7-46F1-84A9-53F9F2901263}</ProjectGuid>
+    <ProjectGuid>{0187DF3F-8B77-466C-9C0B-EB1A943D46BB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTest</RootNamespace>
-    <AssemblyName>UnitTest</AssemblyName>
+    <RootNamespace>Utilities</RootNamespace>
+    <AssemblyName>Utilities</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,13 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework">
-      <HintPath>..\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,26 +40,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContractSerializeTest.cs" />
-    <Compile Include="DateTimeTest.cs" />
+    <Compile Include="CA\ExpressionElement.cs" />
+    <Compile Include="CA\ExpressionException.cs" />
+    <Compile Include="CA\ExpressionParameterElement.cs" />
+    <Compile Include="CA\IExpression.cs" />
+    <Compile Include="CA\IExpressionMetadata.cs" />
+    <Compile Include="CA\IValidationFunction.cs" />
+    <Compile Include="CA\IValidationParameter.cs" />
+    <Compile Include="CA\ValidationParameter.cs" />
+    <Compile Include="CA\ValidationResult.cs" />
+    <Compile Include="CA\ValidationResultCollection.cs" />
+    <Compile Include="CA\ValidationSetting.cs" />
+    <Compile Include="Pisys\PisysUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringTest.cs" />
-    <Compile Include="XsltScript\XSLTStylesheetScriptingTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Utilities\Utilities.csproj">
-      <Project>{0187DF3F-8B77-466C-9C0B-EB1A943D46BB}</Project>
-      <Name>Utilities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="XsltScript\Sample\calc.xsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="XsltScript\Sample\number.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Compile Include="StructureMapperExtension\DecoratedInstance.cs" />
+    <Compile Include="TimeRecord\ElapsedTimeRecorder.cs" />
+    <Compile Include="CA\Expression.cs" />
+    <Compile Include="StructureMapperExtension\IProductAuthorizer.cs" />
+    <Compile Include="StructureMapperExtension\IProductRepository.cs" />
+    <Compile Include="StructureMapperExtension\Product.cs" />
+    <Compile Include="StructureMapperExtension\ProductCachingDecorator.cs" />
+    <Compile Include="StructureMapperExtension\ProductRepoLogger.cs" />
+    <Compile Include="StructureMapperExtension\ProductSecurityDecorator.cs" />
+    <Compile Include="StructureMapperExtension\User.cs" />
+    <Compile Include="XsltScript\XSLTStylesheetScripting.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
