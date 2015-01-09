@@ -51,6 +51,10 @@
     <Compile Include="CA\ValidationResult.cs" />
     <Compile Include="CA\ValidationResultCollection.cs" />
     <Compile Include="CA\ValidationSetting.cs" />
+    <Compile Include="NDS\IntegrationMailMessageDataGetter.cs" />
+    <Compile Include="NDS\IPageDataGetter.cs" />
+    <Compile Include="NDS\NDSIntegrationMailMessageDataGetter.cs" />
+    <Compile Include="NDS\NDSLetterDetailIntegrationMailMessageDataGetter.cs" />
     <Compile Include="Pisys\PisysUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructureMapperExtension\DecoratedInstance.cs" />
