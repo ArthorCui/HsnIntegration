@@ -10,15 +10,27 @@ namespace Utilities.EmailAlert
 {
     public class SMTPSender : IFComponent
     {
-        public IMessageAction Process(IMsgContext msgContext)
+        private IMailService _mailService;
+        public IMailService MailService
         {
-            this.SendMail(msgContext);
-            return MessageAction.ContinueProcessing;
+            get
+            {
+                if (_mailService == null)
+                {
+                    _mailService = new MailService();
+                }
+                return _mailService;
+            }
+            set
+            {
+                value = this._mailService;
+            }
         }
 
-        public void SendMail(IMsgContext msgContext)
+        public IMessageAction Process(IMsgContext msgContext)
         {
-
+            MailService.Send(msgContext);
+            return MessageAction.ContinueProcessing;
         }
     }
 }
