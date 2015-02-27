@@ -24,6 +24,15 @@ namespace UnitTest
             Console.WriteLine(timer.Interval.TotalMilliseconds);
             Console.WriteLine(timer2.Interval);
         }
+
+        [Test]
+        public void DateTimeUTCTest()
+        {
+            var utcTime = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+            Console.WriteLine(utcTime);
+            var time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            Console.WriteLine(time);
+        }
     }
 
     public class Timer

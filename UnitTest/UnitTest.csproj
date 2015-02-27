@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="DataContractSerializeTest.cs" />
     <Compile Include="DateTimeTest.cs" />
+    <Compile Include="OperatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringTest.cs" />
     <Compile Include="XsltScript\XSLTStylesheetScriptingTest.cs" />
