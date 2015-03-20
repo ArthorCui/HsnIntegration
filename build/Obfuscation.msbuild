@@ -1,0 +1,26 @@
+<Import Project="$(MSBuildExtensionsPath)\PreEmptive\Dotfuscator\4.0\PreEmptive.Dotfuscator.Targets" />
+
+<PropertyGroup>
+    <ConfigPath>$(SolutionRoot)\..\BuildType\Dotfuscator.Configuration.xml</ConfigPath>
+    <InputPath>$(SolutionRoot)\..\Binaries\Release</InputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DotfuscatorProperties>
+      <targetdir>$(InputPath)</targetdir>
+      <keydir>$(SolutionRoot)\Keys</keydir>
+    </DotfuscatorProperties>
+  </PropertyGroup>
+  <ItemGroup>
+    <InputAssembly Include="$(InputPath)\*.dll;$(InputPath)\*.exe" Exclude="$(InputPath)\*.vshost.exe"/>
+  </ItemGroup>
+  
+  <Target Name="AfterCompile">
+    <!-- Perform obfuscation steps after assemblies are compiled.-->
+    <Dotfuscate InputAssemblies="@(InputAssembly)" Properties="$(DotfuscatorProperties)" ConfigPath="$(ConfigPath)">
+      <Output TaskParameter="MappingFile" ItemName="DotfuscatorMappingFile"/>
+      <Output TaskParameter="ReportFiles" ItemName="DotfuscatorReportFiles"/>
+      <Output TaskParameter="OutputAssemblies" ItemName="DotfuscatedAssemblies"/>
+      <Output TaskParameter="SatelliteAssemblies" ItemName="DotfuscatedSatelliteAssemblies"/>
+      <Output TaskParameter="DebugSymbols" ItemName="DotfuscatedDebugSymbols"/>
+    </Dotfuscate>
+  </Target>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE dotfuscator SYSTEM"http://www.preemptive.com/dotfuscator/dtd/dotfuscator_v2.1.dtd">
+<dotfuscator version="2.1">
+  <!--This is application generated code. Do not edit manually.-->
+  <propertylist>
+    <property name="targetdir" value="D:\Roger\projects\dailyfragment\ServiceLibary\bin\Debug" />
+    <property name="keydir" value="D:\Temp\keys" />
+  </propertylist>
+  <global>
+    <option>verbose</option>
+  </global>
+  <input>
+    <asmlist>
+      <inputassembly>
+        <option>library</option>
+        <file dir="${targetdir}" name="ServiceLibary.dll" />
+      </inputassembly>
+    </asmlist>
+  </input>
+  <output>
+    <file dir="${targetdir}\Dotfuscated" />
+  </output>
+  <tempdir>
+    <file dir="${targetdir}\Dotfuscated" />
+  </tempdir>
+  <renaming>
+    <!--<mapping>
+      <mapoutput overwrite="false">
+        <file dir="${targetdir}\Dotfuscated" name="DotfuscatorMapFile-KeepSecure.xml" />
+      </mapoutput>
+    </mapping>-->
+  </renaming>
+  <controlflow level="high" />
+  <stringencrypt>
+    <includelist>
+      <assembly>
+        <file dir="${targetdir}" name="ServiceLibary.dll" />
+      </assembly>
+    </includelist>
+  </stringencrypt>
+  <signing>
+    <resign>
+      <option>dontuseattributes</option>
+      <key>
+        <file dir="${keydir}" name="test.snk" />
+      </key>
+    </resign>
+  </signing>
+</dotfuscator>
