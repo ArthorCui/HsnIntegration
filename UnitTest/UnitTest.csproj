@@ -31,8 +31,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Integration.Library.Common">
+      <HintPath>..\lib\hsntech\IC\Integration.Library.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Integration.Library.Framework">
+      <HintPath>..\lib\hsntech\IC\Integration.Library.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Integration.Library.NDS">
+      <HintPath>..\lib\hsntech\IC\Integration.Library.NDS.dll</HintPath>
+    </Reference>
+    <Reference Include="Integration.Library.NDS.Common">
+      <HintPath>..\lib\hsntech\IC\Integration.Library.NDS.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NDSMessage">
+      <HintPath>..\lib\hsntech\IC\NDSMessage.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PayMedia.Framework.Integration.Contracts">
+      <HintPath>..\lib\hsntech\IC\PayMedia.Framework.Integration.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CAMC\ResponseDataHandleTest.cs" />
     <Compile Include="DataContractSerializeTest.cs" />
     <Compile Include="DateTimeTest.cs" />
     <Compile Include="OperatorTest.cs" />
