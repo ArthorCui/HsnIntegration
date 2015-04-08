@@ -32,6 +32,18 @@ namespace UnitTest
                 Console.WriteLine(c + " ");
             }
         }
+
+        public void PadLeftTest()
+        {
+            var id = "512";
+            Console.WriteLine(id.PadLeft(4,'0'));
+            var amount = 10.26;
+            //var d_amount = 10E;
+            var format_amount = (amount * 100).ToString("#").PadLeft(17, '0');
+            Console.WriteLine(format_amount);
+            var round_amount = Math.Round(Convert.ToDecimal(amount), 2);
+            Console.WriteLine(round_amount);
+        }
     }
 
     public static class ObjectExtension
