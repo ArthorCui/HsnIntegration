@@ -16,6 +16,7 @@ namespace Utilities.CA
         public string Filter { get; set; }
         public bool InheritDataType { get; set; }
         public string Name { get; set; }
+        public int Length { get; set; }
         public string Default { get; set; }
         public string DefaultExpression { get; set; }
         public int Priority { get; set; }
@@ -35,6 +36,7 @@ namespace Utilities.CA
                 Filter = Filter,
                 InheritDataType = InheritDataType,
                 Name = Name,
+                Length = Length,
                 Default = Default,
                 DefaultExpression = DefaultExpression,
                 Priority = Priority,

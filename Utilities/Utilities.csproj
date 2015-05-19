@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,11 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CA\CACommand.cs" />
+    <Compile Include="CA\DataContext.cs" />
+    <Compile Include="CA\ExpressionAttribute.cs" />
+    <Compile Include="CA\ExpressionParameterAttribute.cs" />
+    <Compile Include="CA\ExpressionServiceBase.cs" />
     <Compile Include="CA\ExpressionElement.cs" />
     <Compile Include="CA\ExpressionException.cs" />
     <Compile Include="CA\ExpressionParameterElement.cs" />
+    <Compile Include="CA\ExpressionServiceMetadata.cs" />
+    <Compile Include="CA\ExpressionTemplateAttribute.cs" />
+    <Compile Include="CA\Expression_Service.cs" />
+    <Compile Include="CA\Extensions.cs" />
+    <Compile Include="CA\IDataContext.cs" />
     <Compile Include="CA\IExpression.cs" />
     <Compile Include="CA\IExpressionMetadata.cs" />
+    <Compile Include="CA\IExpressionService.cs" />
     <Compile Include="CA\IValidationFunction.cs" />
     <Compile Include="CA\IValidationParameter.cs" />
     <Compile Include="CA\ValidationParameter.cs" />
