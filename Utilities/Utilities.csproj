@@ -69,10 +69,12 @@
     <Compile Include="CA\ValidationResult.cs" />
     <Compile Include="CA\ValidationResultCollection.cs" />
     <Compile Include="CA\ValidationSetting.cs" />
+    <Compile Include="Common\IntegrationException.cs" />
     <Compile Include="EmailAlert\IMailService.cs" />
     <Compile Include="EmailAlert\MailService.cs" />
     <Compile Include="EmailAlert\MessageFormatter.cs" />
     <Compile Include="EmailAlert\SMTPSender.cs" />
+    <Compile Include="Helper\StringUtilities.cs" />
     <Compile Include="NDS\IntegrationMailMessageDataGetter.cs" />
     <Compile Include="NDS\IPageDataGetter.cs" />
     <Compile Include="NDS\NDSIntegrationMailMessageDataGetter.cs" />

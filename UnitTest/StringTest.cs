@@ -44,6 +44,25 @@ namespace UnitTest
             var round_amount = Math.Round(Convert.ToDecimal(amount), 2);
             Console.WriteLine(round_amount);
         }
+
+        [Test]
+        public void BankStringSplitTest()
+        {
+            var inputString = "DTM+7:20071222:102'\r\n";
+            string firstPartOfString = inputString.Substring(inputString.IndexOf('+') + 1);
+            int dtmPeriodQualifier = int.Parse(firstPartOfString.Substring(0, firstPartOfString.IndexOf(':')));
+
+            string dateFormatQualifier = inputString.Split('+', '\'', ':')[4];
+            string inputDate = inputString.Split('+', '\'', ':')[3];
+
+            Console.WriteLine("firstPartOfString: " + firstPartOfString);
+            Console.WriteLine("dtmPeriodQualifier: " + dtmPeriodQualifier);
+            Console.WriteLine("dateFormatQualifier: " + dateFormatQualifier);
+            Console.WriteLine("inputDate: " + inputDate);
+
+            var parsedDate = DateTime.ParseExact("20071222", "yyyyMMdd", null);
+            Console.WriteLine(parsedDate);
+        }
     }
 
     public static class ObjectExtension
