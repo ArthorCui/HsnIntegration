@@ -63,6 +63,54 @@ namespace UnitTest
             var parsedDate = DateTime.ParseExact("20071222", "yyyyMMdd", null);
             Console.WriteLine(parsedDate);
         }
+
+        [Test]
+        public void DecimailTest()
+        {
+            var d = "-1437.50";
+            decimal r = decimal.Parse(d);
+            var s = r.ToString("0.##");
+            decimal amount = Math.Abs(decimal.Parse(s));
+            Console.WriteLine(amount);
+            decimal d1 = 0.125m;
+            Console.WriteLine(d1.ToString("0.##"));
+            //decimal t = Math.Abs(decimal.Parse(""));
+            //Console.WriteLine(t);
+        }
+
+        [Test]
+        public void testconvert()
+        {
+            decimal invTotal = 0;
+
+            var tt = ConvertToAmountString(invTotal.ToString("0.##"));
+            var total = ConvertToAmountString("-1437.50");
+
+            Console.WriteLine(tt);
+            Console.WriteLine(total);
+
+        }
+
+        private string ConvertToAmountString(string amountString)
+        {
+            decimal amount = 0;
+
+            try
+            {
+                amount = Math.Abs(decimal.Parse(amountString));
+            }
+            catch (Exception ex)
+            {
+                /* MTarvin 03/02/2009 Mercury 11113 - IC (Bank and FS) Improve error messages when parsing export files
+                 * Set a reference (Customer ID) and print what user the error occured on, helps the user find issue
+                 */
+                throw new Exception(string.Format("\r\nError parsing the following value to decimal: {0}\r\n\r\n", amountString), ex);
+            }
+
+            string amountDataString = string.Format("{0:000000000000000}", amount * 100);
+
+            return amountDataString;
+        }
     }
 
     public static class ObjectExtension
@@ -80,4 +128,6 @@ namespace UnitTest
             return (T)value;
         }
     }
+
+
 }
