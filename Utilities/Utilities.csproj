@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PayMedia.Integration.CommunicationLog.ServiceContracts">
+      <HintPath>..\lib\hsntech\PayMedia.Integration.CommunicationLog.ServiceContracts.dll</HintPath>
+    </Reference>
     <Reference Include="PayMedia.Integration.FrameworkService.Common">
       <HintPath>..\lib\hsntech\PayMedia.Integration.FrameworkService.Common.dll</HintPath>
     </Reference>
@@ -47,7 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CA\BaseSender.cs" />
+    <Compile Include="CA\BaseTcpSender.cs" />
     <Compile Include="CA\CACommand.cs" />
+    <Compile Include="CA\ComponentContext.cs" />
     <Compile Include="CA\DataContext.cs" />
     <Compile Include="CA\ExpressionAttribute.cs" />
     <Compile Include="CA\ExpressionParameterAttribute.cs" />
@@ -59,12 +65,16 @@
     <Compile Include="CA\ExpressionTemplateAttribute.cs" />
     <Compile Include="CA\Expression_Service.cs" />
     <Compile Include="CA\Extensions.cs" />
+    <Compile Include="CA\IComponentContext.cs" />
     <Compile Include="CA\IDataContext.cs" />
     <Compile Include="CA\IExpression.cs" />
     <Compile Include="CA\IExpressionMetadata.cs" />
     <Compile Include="CA\IExpressionService.cs" />
+    <Compile Include="CA\ISender.cs" />
     <Compile Include="CA\IValidationFunction.cs" />
     <Compile Include="CA\IValidationParameter.cs" />
+    <Compile Include="CA\TcpSenderEventArgs.cs" />
+    <Compile Include="CA\TcpSenderParameter.cs" />
     <Compile Include="CA\ValidationParameter.cs" />
     <Compile Include="CA\ValidationResult.cs" />
     <Compile Include="CA\ValidationResultCollection.cs" />
@@ -91,8 +101,18 @@
     <Compile Include="StructureMapperExtension\ProductRepoLogger.cs" />
     <Compile Include="StructureMapperExtension\ProductSecurityDecorator.cs" />
     <Compile Include="StructureMapperExtension\User.cs" />
+    <Compile Include="Verimatriax\Enums.cs" />
+    <Compile Include="Verimatriax\Extensions.cs" />
+    <Compile Include="Verimatriax\VerimatrixConstants.cs" />
+    <Compile Include="Verimatriax\VerimatrixDefultSender.cs" />
+    <Compile Include="Verimatriax\VerimatrixLogEntity.cs" />
+    <Compile Include="Verimatriax\VerimatrixLogHandler.cs" />
+    <Compile Include="Verimatriax\VerimatrixMessageDataAccess.cs" />
+    <Compile Include="Verimatriax\VerimatrixResponse.cs" />
+    <Compile Include="Verimatriax\VerimatrixSenderParameter.cs" />
     <Compile Include="XsltScript\XSLTStylesheetScripting.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
