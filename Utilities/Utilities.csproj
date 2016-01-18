@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Entriq.Security.Encryption">
+      <HintPath>..\lib\hsntech\Entriq.Security.Encryption.dll</HintPath>
+    </Reference>
     <Reference Include="PayMedia.Integration.CommunicationLog.ServiceContracts">
       <HintPath>..\lib\hsntech\PayMedia.Integration.CommunicationLog.ServiceContracts.dll</HintPath>
     </Reference>
@@ -84,6 +87,7 @@
     <Compile Include="EmailAlert\MailService.cs" />
     <Compile Include="EmailAlert\MessageFormatter.cs" />
     <Compile Include="EmailAlert\SMTPSender.cs" />
+    <Compile Include="Entriq\Encryption.cs" />
     <Compile Include="Helper\StringUtilities.cs" />
     <Compile Include="NDS\IntegrationMailMessageDataGetter.cs" />
     <Compile Include="NDS\IPageDataGetter.cs" />

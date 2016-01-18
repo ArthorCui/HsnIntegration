@@ -69,6 +69,7 @@
     <Compile Include="OperatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyTest.cs" />
+    <Compile Include="SecurityTester.cs" />
     <Compile Include="StringTest.cs" />
     <Compile Include="XsltScript\XSLTStylesheetScriptingTest.cs" />
   </ItemGroup>

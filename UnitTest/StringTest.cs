@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using System.Globalization;
 
 namespace UnitTest
 {
@@ -74,6 +75,10 @@ namespace UnitTest
             Console.WriteLine(amount);
             decimal d1 = 0.125m;
             Console.WriteLine(d1.ToString("0.##"));
+
+            decimal t1;
+            decimal.TryParse(d, NumberStyles.Any, CultureInfo.InvariantCulture, out t1);
+            Console.WriteLine(t1);
             //decimal t = Math.Abs(decimal.Parse(""));
             //Console.WriteLine(t);
         }
@@ -89,6 +94,12 @@ namespace UnitTest
             Console.WriteLine(tt);
             Console.WriteLine(total);
 
+        }
+
+        private bool TryParseExtension(string input)
+        {
+            decimal value;
+            return decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value);
         }
 
         private string ConvertToAmountString(string amountString)
