@@ -87,6 +87,8 @@ namespace UnitTest
             var filepath_ic08_entriq = @"\\ic08\C$\Program Files (x86)\IBS Interprit\DbUpgradeUtility\Entriq.DataAccess.Oracle.DLL";
             var filepath_ic08_service = @"\\ic08\C$\Program Files (x86)\IBS Interprit\Integration\WindowsService\Entriq.DataAccess.dll";
             var filepath_icmain = @"D:\tfs-w2k08\Integration\Main 6.2\Integration\Core DLL\Entriq.DataAccess.Oracle.dll";
+
+            var file_msvcrt = @"D:\app\cuir\product\11.2.0\client_1\jdk\jre\bin\msvcrt.dll";
             //Console.WriteLine(UnmanagedDllIs64Bit(filePath_11g));
             //Console.WriteLine(UnmanagedDllIs64Bit(filePath_12c));
             //Console.WriteLine(UnmanagedDllIs64Bit(filePath_ic27));
@@ -94,7 +96,21 @@ namespace UnitTest
             //Console.WriteLine(UnmanagedDllIs64Bit(filepath_ic08_12c));
             //Console.WriteLine(UnmanagedDllIs64Bit(filepath_ic08_entriq));
             //Console.WriteLine(UnmanagedDllIs64Bit(filepath_ic08_service));
-            Console.WriteLine(UnmanagedDllIs64Bit(filepath_icmain));
+            Console.WriteLine(UnmanagedDllIs64Bit(file_msvcrt));
+        }
+
+        [Test]
+        public void DirectoryDllTest()
+        {
+            var folderPath = @"D:\Temp\12c_2_0_oracle\12c_x86_xcopy_dll";
+            var folderPath_TNOR_29 = @"\\ic25\C$\Users\entriqeng\Desktop\temp_TNOR_29\DbUpgradeUtility";
+
+            var s = @"C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\Remote Debugger\x86";
+            DirectoryInfo folder = new DirectoryInfo(s);
+            foreach (FileInfo file in folder.GetFiles("*.dll"))
+            {
+                Console.WriteLine(file.Name + ": " + UnmanagedDllIs64Bit(file.FullName));
+            }
         }
 
     }
