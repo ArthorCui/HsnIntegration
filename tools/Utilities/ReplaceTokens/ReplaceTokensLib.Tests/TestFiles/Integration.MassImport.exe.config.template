@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="IntegrationSettings" type="Integration.Framework.XmlConfigurator, Integration.Framework"/>
+    <section name="loggingConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings, Microsoft.Practices.EnterpriseLibrary.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"/>
+  </configSections>
+
+  <connectionStrings>
+    <add name="LoggingDb" connectionString="user id=${Database/UserID};password=${Database/Password};data source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST = ${Database/Host})(PORT = ${Database/Port})))(CONNECT_DATA =(SERVICE_NAME = ${Database/ServiceName})))"
+      providerName="System.Data.OracleClient" />
+  </connectionStrings>
+
+  <IntegrationSettings type="Integration.Framework.Config.IntegrationSettings, Integration.Framework" >
+    <Application Key="app1" Name="MassImport Application">
+
+      <!-- Register all components in an assembly -->
+      <RegisteredAssembly Name="Integration.Framework.Components" />
+      <RegisteredAssembly Name="Integration.MassImport.Components" />
+
+      <!-- Define processing pipelines -->
+      <Pipeline Name="MassImport Pipeline 1" ChannelFactory="Integration.Framework.MSMQChannelFactory, Integration.Framework">
+
+        <!-- Define components within a pipeline -->
+        <FileWatcher Name="FileWatcher" ManagerOutput="${MassImport/ProcessManagerQueue}" Output="${MassImport/FileSplitterQueue}" PollingInterval="${MassImport/InputFolderPollingInterval}"
+                     WatchFolder="${MassImport/InputFolder}" SearchPattern="${MassImport/InputFolderSearchPattern}" ArchiveFolder="${MassImport/ArchiveFolder}" />
+
+        <XMLFileSplitter Name="XMLFileSplitter" Input="${MassImport/FileSplitterQueue}" Output="${MassImport/EnricherQueue}"
+                     ManagerOutput="${MassImport/ProcessManagerQueue}" MatchExpression="//CustomerBundle" />
+
+        <CustomerBundleEnricher Name="CustomerBundleEnricher" Input="${MassImport/EnricherQueue}"
+                                Output="${MassImport/UpdaterQueue}"
+                                ManagerOutput="${MassImport/ProcessManagerQueue}"
+                                LocationServiceUrl="${MassImport/LocationServiceUrl}"
+                                DSN="${MassImport/DSN}"
+                                UserName="${MassImport/UserName}"
+                                Proof="${MassImport/Proof}"
+                                MappingFilePath="${MassImport/EnricherMappingFilePath}"/>
+
+        <CustomerBundleUpdater Name="CustomerBundleUpdater" Input="${MassImport/UpdaterQueue}"
+                               ManagerOutput="${MassImport/ProcessManagerQueue}"
+                                LocationServiceUrl="${MassImport/LocationServiceUrl}"
+                                DSN="${MassImport/DSN}"
+                                UserName="${MassImport/UserName}"
+                                Proof="${MassImport/Proof}"/>
+
+        <ProcessManager Name="ProcessManager" ManagerInput="${MassImport/ProcessManagerQueue}"
+          OutputFolder="${MassImport/OutputFolder}"
+          SummaryFile="${MassImport/SummaryFile}" SummaryRefreshInterval="${MassImport/SummaryFileRefreshInterval}"
+          ErrorFile="${MassImport/ErrorFile}" />
+      </Pipeline>
+      
+      <!-- Define processing pipelines -->
+      <Pipeline Name="MassImport Pipeline 2" ChannelFactory="Integration.Framework.MSMQChannelFactory, Integration.Framework">
+
+        <!-- Define components within a pipeline -->
+        <FileWatcher Name="FileWatcher" ManagerOutput="${MassImport/FlatFileToXmlTransformQueue}" Output="${MassImport/FlatFileArchiveQueue}" PollingInterval="${MassImport/FlatFilePollingInterval}" 
+                     WatchFolder="${MassImport/FlatFileInputFolder}" SearchPattern="${MassImport/FlatFileSearchPattern}" ArchiveFolder="${MassImport/FlatFileArchiveFolder}" />
+
+        <FlatToXmlTransformer Name="FlatFileToXmlTransformer" Input="${MassImport/FlatFileToXmlTransformQueue}" OutputFolder="${MassImport/FlatFileOutputFolder}" 
+                     MappingFile="${MassImport/FlatFileMappingFile}" />
+      </Pipeline>
+
+      <!-- ${DynamicBlock Group="MassImportDynamicPipeline"} -->
+      <Pipeline Name="${PipelineName}" ChannelFactory="Integration.Framework.MSMQChannelFactory, Integration.Framework">
+        <FileWatcher Name="FileWatcher" ManagerOutput="${FlatFileToXmlTransformQueue}" Output="${FlatFileArchiveQueue}" PollingInterval="${FlatFilePollingInterval}"
+                     WatchFolder="${MassImport/FlatFileInputFolder}" SearchPattern="${FlatFileSearchPattern}" ArchiveFolder="${FlatFileArchiveFolder}" />
+        <FlatToXmlTransformer Name="FlatFileToXmlTransformer" Input="${FlatFileToXmlTransformQueue}" OutputFolder="${FlatFileOutputFolder}"
+                     MappingFile="${FlatFileMappingFile}" />
+      </Pipeline>
+      <!-- ${EndDynamicBlock} -->
+
+
+    </Application>
+
+  </IntegrationSettings>
+  <system.diagnostics>
+    <sources>
+      <!-- Default Bank_Audit Trace Source Configuration -->
+
+      <!--
+            'databaseInstanceName' is used to connect to a database using Enterprise Library Data Access
+            Application Block, 'databaseInstanceName' must point to a valid ConnectionString name in Connection Strings section
+            
+            Default ConnectionString Name Configuration: databaseInstanceName="LoggingDb"
+        -->
+      <!--
+            'databaseDsnName' should be used instead of 'databaseInstanceName' if ConnectionString is not specified or if
+            DSN based database resolution is preferred. 'databaseDsnName' must point to a valid DSN name.
+
+            Default DSN Name Configuration: databaseDsnName="CI_CENTRAL"
+       -->
+
+      <source name="EVENT_LOG" switchValue="Information,ActivityTracing"
+              switchType="System.Diagnostics.SourceSwitch">
+        <listeners>
+          <add name="DatabaseTraceListener"
+                traceOutputOptions="None"
+                databaseInstanceName="LoggingDb"
+                writeLogTableName="ICFRAMEWORK_LOG"
+                type="Integration.Framework.Logging.DatabaseTraceListener, Integration.Framework">
+            <filter type="System.Diagnostics.EventTypeFilter" initializeData="Information,ActivityTracing"/>
+          </add>
+        </listeners>
+      </source>
+
+
+      <source name="System.ServiceModel.MessageLogging" switchValue="Verbose">
+        <listeners>
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+          <add name="MessageLog">
+            <filter type="" />
+          </add>
+        </listeners>
+      </source>
+    </sources>
+    <sharedListeners>
+      <add initializeData="c:\temp\IntegrationFramework2_WCFMessageLogs.svclog" type="System.Diagnostics.XmlWriterTraceListener, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          name="MessageLog" traceOutputOptions="None">
+        <filter type="" />
+      </add>
+    </sharedListeners>
+    <switches>
+      <add name="BooleanSwitch" value="1" />
+      <add name="TraceLevelSwitch" value="4" />
+    </switches>
+    <trace autoflush="true" indentsize="2">
+      <listeners>
+        <add initializeData="Integration Framework" type="System.Diagnostics.EventLogTraceListener"
+            name="eventLogTraceListener">
+          <filter type="System.Diagnostics.EventTypeFilter" initializeData="Information,ActivityTracing"/>
+        </add>
+        <add name="DatabaseTraceListener"
+              traceOutputOptions="None"
+              databaseInstanceName="LoggingDb"
+              writeLogTableName="ICFRAMEWORK_LOG"
+              type="Integration.Framework.Logging.DatabaseTraceListener, Integration.Framework">
+          <filter type="System.Diagnostics.EventTypeFilter" initializeData="Information,ActivityTracing"/>
+        </add>
+        <add type="System.Diagnostics.ConsoleTraceListener"
+            name="ConsoleTraceListener">
+          <filter type="" />
+        </add>
+      </listeners>
+    </trace>
+  </system.diagnostics>
+
+
+  <loggingConfiguration name="Logging Application Block" tracingEnabled="true" defaultCategory="General" logWarningsWhenNoCategoriesMatch="true">
+    <listeners>
+
+      <add databaseInstanceName="LoggingDb" writeLogStoredProcName="PKG_LOGGING.WRITELOG"
+        addCategoryStoredProcName="" formatter="Text Formatter" tableName="ICFRAMEWORK_LOG"
+        listenerDataType="Integration.Framework.Logging.DatabaseTraceLogger.FormattedOracleDatabaseTraceListenerData, Integration.Framework.Logging.DatabaseTraceLogger"
+        traceOutputOptions="None"
+        type="Integration.Framework.Logging.DatabaseTraceLogger.FormattedOracleDatabaseTraceListener, Integration.Framework.Logging.DatabaseTraceLogger"
+        name="Framework Trace Listener"
+			/>
+    </listeners>
+    <formatters>
+      <add type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.BinaryLogFormatter, Microsoft.Practices.EnterpriseLibrary.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null" name="Binary Formatter"/>
+      <add template="Timestamp: {timestamp}  Message: {message}" type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null" name="Short Text Formatter"/>
+      <add template="Timestamp: {timestamp}&#xA;Message: {message}&#xA;Category: {category}&#xA;Priority: {priority}&#xA;EventId: {eventid}&#xA;Severity: {severity}&#xA;Title:{title}&#xA;Machine: {machine}&#xA;Application Domain: {appDomain}&#xA;Process Id: {processId}&#xA;Process Name: {processName}&#xA;Win32 Thread Id: {win32ThreadId}&#xA;Thread Name: {threadName}&#xA;Extended Properties: {dictionary({key} - {value}&#xA;)}" type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null" name="Text Formatter"/>
+    </formatters>
+    <categorySources>
+      <add switchValue="All" name="Audit">
+        <listeners>
+        </listeners>
+      </add>
+      <add switchValue="All" name="Exception">
+        <listeners>
+          <add name="Framework Trace Listener"/>
+        </listeners>
+      </add>
+      <add switchValue="All" name="General">
+        <listeners>
+        </listeners>
+      </add>
+      <add switchValue="All" name="Notification">
+        <listeners>
+          <add name="Framework Trace Listener"/>
+        </listeners>
+      </add>
+      <add switchValue="All" name="Timing">
+        <listeners>
+        </listeners>
+      </add>
+      <add switchValue="All" name="Trace">
+        <listeners>
+          <add name="Framework Trace Listener"/>
+        </listeners>
+      </add>
+    </categorySources>
+    <specialSources>
+      <allEvents switchValue="All" name="All Events"/>
+      <notProcessed switchValue="All" name="Unprocessed Category"/>
+      <errors switchValue="All" name="Logging Errors &amp; Warnings">
+        <listeners>
+          <add name="Formatted EventLog TraceListener"/>
+          <add name="Framework Trace Listener"/>
+        </listeners>
+      </errors>
+    </specialSources>
+  </loggingConfiguration>
+
+</configuration>

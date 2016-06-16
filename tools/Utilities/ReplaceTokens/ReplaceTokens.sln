@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceTokens", "ReplaceTokens\ReplaceTokens.csproj", "{435C0FB7-C547-4ED7-B2CF-8AD96C7E6340}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceTokensLib", "ReplaceTokensLib\ReplaceTokensLib.csproj", "{7C1A2DEA-9AF0-4D89-BAA0-7BDE8CC88026}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceTokensLib.Tests", "ReplaceTokensLib.Tests\ReplaceTokensLib.Tests.csproj", "{365461CA-DDB0-4429-9458-5E7A8D0644A2}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs-w2k03:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ReplaceTokens\\ReplaceTokens.csproj
+		SccProjectName1 = ReplaceTokens
+		SccLocalPath1 = ReplaceTokens
+		SccProjectUniqueName2 = ReplaceTokensLib\\ReplaceTokensLib.csproj
+		SccProjectName2 = ReplaceTokensLib
+		SccLocalPath2 = ReplaceTokensLib
+		SccProjectUniqueName3 = ReplaceTokensLib.Tests\\ReplaceTokensLib.Tests.csproj
+		SccProjectName3 = ReplaceTokensLib.Tests
+		SccLocalPath3 = ReplaceTokensLib.Tests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{435C0FB7-C547-4ED7-B2CF-8AD96C7E6340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{435C0FB7-C547-4ED7-B2CF-8AD96C7E6340}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{435C0FB7-C547-4ED7-B2CF-8AD96C7E6340}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{435C0FB7-C547-4ED7-B2CF-8AD96C7E6340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C1A2DEA-9AF0-4D89-BAA0-7BDE8CC88026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C1A2DEA-9AF0-4D89-BAA0-7BDE8CC88026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C1A2DEA-9AF0-4D89-BAA0-7BDE8CC88026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C1A2DEA-9AF0-4D89-BAA0-7BDE8CC88026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{365461CA-DDB0-4429-9458-5E7A8D0644A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{365461CA-DDB0-4429-9458-5E7A8D0644A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{365461CA-DDB0-4429-9458-5E7A8D0644A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{365461CA-DDB0-4429-9458-5E7A8D0644A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

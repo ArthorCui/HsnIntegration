@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+*********************************************************************************
+ File: MACHINE_ANSWER_FILE.xml
+ Purpose: machine-specific configuration values are stored here
+ Format:
+<AnswerFile>
+	<Group Name="Group1">
+		<Key Name="MySetting">
+			<Value>Test</Value>
+		</Key>
+	</Group>
+</AnswerFile>
+
+Values can span multiple lines.  If the value contains an XML snippet
+or anything else that would interfere with the parsing of this file,
+it will need to be enclosed within a CDATA tag.
+	<Group Name="Group1">
+		<Key Name="MySetting">
+			<Value><![CDATA[<myxml>
+			<data1>1</data1>
+			<data2>2</data2>
+			<data3>3</data3>
+			</myxml>]]></Value>
+		</Key>
+	</Group>
+
+ Template files can refer to these values like so:
+ <add key="myconfigsetting" value="${Group1/MySetting}"/>
+*********************************************************************************
+-->
+<AnswerFile>
+  <!-- General settings -->
+  <Group Name="General">
+    <!-- This key is used by the DBUpgrade utility during installation, 
+    and will be used for dynamic token replacement during script execution -->
+    <Key Name="AnswerFileLocation"><Value>C:\AnswerFile\MACHINE_ANSWER_FILE.xml</Value></Key>
+  </Group>
+
+  <!-- Database settings -->
+	<Group Name="Database">
+		<Key Name="UserID"><Value>CI_CENTRAL_MI</Value></Key>
+		<Key Name="Password"><Value>CI_CENTRAL_MI</Value></Key>
+		<Key Name="Host"><Value>eng-oradb-a</Value></Key>
+		<Key Name="Port"><Value>1521</Value></Key>
+		<Key Name="ServiceName"><Value>DEV</Value></Key>
+	</Group>
+	
+	<!-- DBScript settings -->
+	<Group Name="DBScripts">
+		<Key Name="base_path"><Value>C:\Integration\Framework2.0\Framework\Trunk\CreateCI_DB</Value></Key>
+		<Key Name="ci_central_schema"><Value>CI_CENTRAL_MI</Value></Key>
+		<Key Name="ci_businessdata_schema"><Value>CI_CENTRAL_MI</Value></Key>
+		<Key Name="tfs_user"><Value>Thomas.Johnson</Value></Key>
+		<Key Name="tfs_pass"><Value>password</Value></Key>
+		<Key Name="tns_name"><Value>DEV</Value></Key>
+		<Key Name="system_user"><Value>SYSTEM</Value></Key>
+		<Key Name="system_pass"><Value>power007</Value></Key>
+		<Key Name="dbserver_name"><Value>eng-oradb-a</Value></Key>
+		<Key Name="dbserver_user"><Value>oracle</Value></Key>
+		<Key Name="dbserver_pass"><Value>!@#0racle</Value></Key>
+	</Group>
+	
+	<!-- Mass Import settings -->
+	<Group Name="MassImport">
+		<Key Name="InputFolder"><Value>C:\MassImport\Input\</Value></Key>
+		<Key Name="InputFolderPollingInterval"><Value>1000</Value></Key>
+		<Key Name="InputFolderSearchPattern"><Value>*.XML</Value></Key>
+		<Key Name="ArchiveFolder"><Value>C:\MassImport\Archive\</Value></Key>
+		<Key Name="InputQueue"><Value>FileReceivedMessage</Value></Key>
+		<Key Name="ArchiveQueue"><Value>ArchiveFilename</Value></Key>
+		<Key Name="FileSplitterQueue"><Value>XMLFileSplitterInput</Value></Key>
+		<Key Name="ProcessManagerQueue"><Value>ProcessManagerInput</Value></Key>
+		<Key Name="EnricherQueue"><Value>CustomerBundleEnricherInput</Value></Key>
+		<Key Name="UpdaterQueue"><Value>CustomerBundleUpdaterInput</Value></Key>
+		<Key Name="LocationServiceUrl"><Value>http://citnorsecoredev/ASM/ALL/ServiceLocation.svc</Value></Key>
+		<Key Name="DSN"><Value>SWEDEN</Value></Key>
+		<Key Name="UserName"><Value>entriqeng</Value></Key>
+		<Key Name="Proof"><Value>entriqeng</Value></Key>
+		<Key Name="EnricherMappingFilePath"><Value>C:\Program Files\IBS Interprit\MassImportService\CustomerBundleEnricher_MappingFile.xml</Value></Key>
+		<Key Name="OutputFolder"><Value>C:\MassImport\Output\</Value></Key>
+		<Key Name="SummaryFile"><Value>.SummaryFile.log</Value></Key>
+		<Key Name="SummaryFileRefreshInterval"><Value>10</Value></Key>
+		<Key Name="ErrorFile"><Value>.ErrorFile.log</Value></Key>
+		<Key Name="FlatFileToXmlTransformQueue"><Value>FlatFileToXmlTransformInput</Value></Key>
+		<Key Name="FlatFileArchiveQueue"><Value>FlatFileArchiveFilename</Value></Key>
+		<Key Name="FlatFilePollingInterval"><Value>1000</Value></Key>
+		<Key Name="FlatFileInputFolder"><Value>C:\MassImport\FlatFileInput\</Value></Key>
+		<Key Name="FlatFileSearchPattern"><Value>*.CSV</Value></Key>
+		<Key Name="FlatFileArchiveFolder"><Value>C:\MassImport\FlatFileArchive\</Value></Key>
+		<Key Name="FlatFileOutputFolder"><Value>C:\MassImport\Input\</Value></Key>
+		<Key Name="FlatFileMappingFile"><Value>C:\Program Files\IBS Interprit\MassImportService\FlatFileToXmlTransformer_MappingFile.xml</Value></Key>
+	</Group>
+	
+	<Group Name="MassImportDynamicPipeline">
+		<Key Name="PipelineName"><Value>Pipeline1</Value></Key>
+		<Key Name="FlatFileToXmlTransformQueue"><Value>FlatFileToXmlTransformInput</Value></Key>
+		<Key Name="FlatFileArchiveQueue"><Value>FlatFileArchiveFilename</Value></Key>
+		<Key Name="FlatFilePollingInterval"><Value>1000</Value></Key>
+		<Key Name="FlatFileInputFolder"><Value>C:\MassImport\FlatFileInput\</Value></Key>
+		<Key Name="FlatFileSearchPattern"><Value>*.CSV</Value></Key>
+		<Key Name="FlatFileArchiveFolder"><Value>C:\MassImport\FlatFileArchive\</Value></Key>
+		<Key Name="FlatFileOutputFolder"><Value>C:\MassImport\Input\</Value></Key>
+		<Key Name="FlatFileMappingFile"><Value>C:\Program Files\IBS Interprit\MassImportService\FlatFileToXmlTransformer_MappingFile.xml</Value></Key>
+	</Group>
+	
+	<Group Name="MassImportDynamicPipeline">
+		<Key Name="PipelineName"><Value>Pipeline2</Value></Key>
+		<Key Name="FlatFileToXmlTransformQueue"><Value>FlatFileToXmlTransformInput2</Value></Key>
+		<Key Name="FlatFileArchiveQueue"><Value>FlatFileArchiveFilename2</Value></Key>
+		<Key Name="FlatFilePollingInterval"><Value>1000</Value></Key>
+		<Key Name="FlatFileInputFolder"><Value>C:\MassImport\FlatFileInput2\</Value></Key>
+		<Key Name="FlatFileSearchPattern"><Value>*.TXT</Value></Key>
+		<Key Name="FlatFileArchiveFolder"><Value>C:\MassImport\FlatFileArchive2\</Value></Key>
+		<Key Name="FlatFileOutputFolder"><Value>C:\MassImport\Input2\</Value></Key>
+		<Key Name="FlatFileMappingFile"><Value>C:\Program Files\IBS Interprit\MassImportService\FlatFileToXmlTransformer_MappingFile2.xml</Value></Key>
+	</Group>
+</AnswerFile>
+
