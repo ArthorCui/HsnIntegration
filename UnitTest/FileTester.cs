@@ -12,7 +12,7 @@ namespace UnitTest
         [Test]
         public void test_file_create_to_network()
         {
-            var fileName = @"\\IC01\L_01_Import\BuildList_FUT9001_STB-DTH1.cd099561-a592-41d5-8127-802bf13926c5.txt";
+            var fileName = "\\\\IC01\\L_01_Import\\BuildList_FUT9001_STB-DTH1.cd099561-a592-41d5-8127-802bf13926c5.txt";
 
             var record = "000091120000032505 000000000000000278340000001722";
             try

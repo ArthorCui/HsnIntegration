@@ -38,18 +38,60 @@ namespace UnitTest
             Assert.AreEqual(expectFilePath, result);
         }
 
-
-    }
-
-    public class LocationIDModelName
-    {
-        public string LocationID;
-        public string ModelName;
-        public string DeviceStatusCode;
-
-        public override string ToString()
+        [Test]
+        public void test_list_except()
         {
-            return string.Format("{0}_{1}_{2}", LocationID, ModelName, DeviceStatusCode);
+            var listA = new List<string>();
+            var listB = new List<string>();
+
+            listA.Add("first line...");
+            listA.Add("second line...");
+
+            listB.Add("first line...");
+            listB.Add("third line...");
+
+            Console.WriteLine("A except B");
+            listA.Except(listB).ToList().ForEach(x => Console.WriteLine(x));
+
+            Console.WriteLine("B except A");
+            listB.Except(listA).ToList().ForEach(x => Console.WriteLine(x));
+
+        }
+
+        [Test]
+        public void test_list_mismatch()
+        {
+            List<string> list1 = new List<string>();
+            list1.Add("list2 not contain.");
+            list1.Add("The Avengers");
+            list1.Add("Shutter Island");
+            list1.Add("Inception");
+            list1.Add("The Dark Knight Rises");
+
+            List<string> list2 = new List<string>();
+            list2.Add("The Avengers changed");
+            list2.Add("Shutter Island");
+            list2.Add("Inception");
+            list2.Add("The Dark Knight Rises changed");
+            list2.Add("Parks and Recreation");
+            list2.Add("Scandal");
+
+            List<string> difference = list2.Except(list1).ToList();
+
+            difference.ForEach(x => Console.WriteLine(x));
+
+        }
+
+        public class LocationIDModelName
+        {
+            public string LocationID;
+            public string ModelName;
+            public string DeviceStatusCode;
+
+            public override string ToString()
+            {
+                return string.Format("{0}_{1}_{2}", LocationID, ModelName, DeviceStatusCode);
+            }
         }
     }
 }
