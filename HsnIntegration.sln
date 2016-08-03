@@ -53,6 +53,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{D7FF
 		tools\scripts\ReplaceTokens.py = tools\scripts\ReplaceTokens.py
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{ECD15B50-5364-41CB-949F-48C45682DC2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionString", "ConnectionString\ConnectionString.csproj", "{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +237,16 @@ Global
 		{60F0705E-F955-4F51-A3EA-7AFB9A38301C}.Release|Mixed Platforms.Build.0 = Release|x86
 		{60F0705E-F955-4F51-A3EA-7AFB9A38301C}.Release|x86.ActiveCfg = Release|x86
 		{60F0705E-F955-4F51-A3EA-7AFB9A38301C}.Release|x86.Build.0 = Release|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Debug|x86.ActiveCfg = Debug|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Debug|x86.Build.0 = Debug|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Release|Any CPU.ActiveCfg = Release|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Release|x86.ActiveCfg = Release|x86
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -256,5 +270,6 @@ Global
 		{7C1A2DEA-9AF0-4D89-BAA0-7BDE8CC88026} = {73E85F4F-BEEF-4C98-AF52-A5262EB7719E}
 		{365461CA-DDB0-4429-9458-5E7A8D0644A2} = {73E85F4F-BEEF-4C98-AF52-A5262EB7719E}
 		{60F0705E-F955-4F51-A3EA-7AFB9A38301C} = {73E85F4F-BEEF-4C98-AF52-A5262EB7719E}
+		{BDABCAA7-017A-4CD4-8F30-EAF3FBE5505D} = {ECD15B50-5364-41CB-949F-48C45682DC2B}
 	EndGlobalSection
 EndGlobal
