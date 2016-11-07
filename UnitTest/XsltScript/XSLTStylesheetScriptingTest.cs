@@ -9,7 +9,6 @@ using System.IO;
 namespace UnitTest
 {
     [TestFixture]
-    [Ignore("Windows Xslt test")]
     public class XSLTStylesheetScriptingTest
     {
         public XSLTStylesheetScripting instance { get; set; }

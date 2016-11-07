@@ -15,7 +15,7 @@ using NDSMessage.SubscriberMessage;
 namespace UnitTest.CAMC
 {
     [TestFixture]
-    [Ignore("Integration message Response handler")]
+    [Ignore]
     public class ResponseDataHandleTest
     {
         public const string RESPONSE_DATA = "0002M003A0100060006201502210545195A09OES058744341E17210796";
