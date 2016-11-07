@@ -1,0 +1,8 @@
+language: csharp
+solution: ./HsnIntegration.sln
+install: 
+  - nuget restore ./HsnIntegration.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script: 
+  - xbuild /p:Configuration=Debug ./HsnIntegration.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./UnitTest/bin/Debug/UnitTest.dll

@@ -8,6 +8,7 @@ using System.IO;
 namespace UnitTest
 {
     [TestFixture]
+    [Ignore("Local dll file check")]
     public class DllMachineTypeTester
     {
         /// <summary>

@@ -10,6 +10,7 @@ namespace UnitTest
     public class FileTester
     {
         [Test]
+        [Ignore("Local file create test")]
         public void test_file_create_to_network()
         {
             var fileName = "\\\\IC01\\L_01_Import\\BuildList_FUT9001_STB-DTH1.cd099561-a592-41d5-8127-802bf13926c5.txt";
