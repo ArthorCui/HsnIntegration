@@ -12,7 +12,7 @@ namespace wordreplace
         private readonly Application _word;
         public WordApplication()
         {
-            _word = new Application();
+            _word = new ApplicationClass();
             _word.Visible = false;
         }
 
