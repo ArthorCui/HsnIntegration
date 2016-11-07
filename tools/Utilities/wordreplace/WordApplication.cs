@@ -53,9 +53,9 @@ namespace wordreplace
 
         public void Quit()
         {
-#pragma warning disable
+//#pragma warning disable
             _word.Quit(ref Missing, ref Missing, ref Missing);
-#pragma warning enable
+//#pragma warning enable
         }
     }
 }
