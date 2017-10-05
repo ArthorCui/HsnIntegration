@@ -39,7 +39,7 @@ namespace UnitTest
             }
             finally
             {
-                result = number + 1;
+                result = result + 1;
                 Console.WriteLine("Input number is {0}, the result number is {1}", number, result);
             }
             return result;
